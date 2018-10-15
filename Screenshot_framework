@@ -1,0 +1,33 @@
+//This class will enable to take screenshot during a selenium testing
+
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+public class Sc_framework 
+{
+//generic static function to take screenshot of the test process 
+public static void takescreen(WebDriver w,String Location)      //in other class just call this function along with the webdriver element and location where screnshot is to be created
+{
+  TakesScreenshot T = (TakesScreenshot)w;
+	  
+	   
+	  File src=T.getScreenshotAs(OutputType.FILE);
+	  
+	try 
+  {
+		org.apache.commons.io.FileUtils.copyFile(src,new File( Location));    
+	} 
+  catch (IOException e) 
+  {
+		// TODO Auto-generated catch block
+		e.getMessage();
+	}
+	  
+}
+
+}
+
