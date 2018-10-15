@@ -1,0 +1,52 @@
+public class First 
+{
+	WebDriver wd;
+	
+	@Test
+  public void f() throws InterruptedException, IOException 
+  {
+		FileInputStream f = new FileInputStream("C:\\Users\\vshadmin\\Desktop\\CP.xlsx");
+		XSSFWorkbook wb = new XSSFWorkbook(f);
+		XSSFSheet x = wb.getSheet("Sheet1");
+		XSSFCell rw;
+		for(int i=0; i<=x.getLastRowNum();i++)
+		{
+			rw= x.getRow(i).getCell(0);
+			String el = rw.toString();
+					
+					if (el.equalsIgnoreCase("Bedsheets"))
+					{
+						String bd = Pepperfry.bedsheet();
+						Assert.assertEquals(bd,"Price: Low To High");
+					}
+					else if(el.equalsIgnoreCase("Padlocks"))
+					{
+						String pd = Pepperfry.padlocks();
+						Assert.assertEquals(pd,"Price: Low To High");
+					}
+					else if(el.equalsIgnoreCase("clocks"))
+					{
+						String cl = Pepperfry.clocks();
+						Assert.assertEquals(cl,"Price: Low To High");
+					}
+		}
+		
+  }
+
+ 
+  @BeforeTest
+  public void beforetest() 
+  {
+	  System.setProperty("webdriver.chrome.driver","D:\\Data\\1SEL\\chromedriver.exe");
+//	  wd= new ChromeDriver();
+//	  wd.get("https://www.pepperfry.com/");
+  }
+
+  
+  @AfterTest
+  public void aftertest() 
+  {
+  wd.quit();
+  }
+
+}
